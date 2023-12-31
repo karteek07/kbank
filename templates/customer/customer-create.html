@@ -1,0 +1,443 @@
+{% extends "base.html" %}
+{% block title %} Create New Customer {% endblock title %}
+{% block navigation %}
+<div>
+    <i class="fa fa-house"></i>
+    <a href={{route.home}}> Home </a>
+</div>
+<div>
+    <i class="fa fa-forward"></i>
+    Customer Create
+</div>
+{% endblock navigation %}
+{% block content %}
+<div class="ccreate">
+    <div id="customer-create-header" class="page-header text-center">
+        <h1>Create New Customer</h1>
+    </div>
+    <form action={{route.customer.create}} method="POST" autocomplete="on">
+        <div class="ccreate-c2 sections">
+            <div class="section section-1">
+                <div class="section-title">Personal Information</div>
+                <div class="section-components-2">
+                    <div class="component s1c1">
+                        <div class="label">
+                            <label for="title">Title</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="title" name="title" required>
+                                <option value="" selected disabled hidden>
+                                    Select Title
+                                </option>
+                                <option value="01">01: Mr.</option>
+                                <option value="02">02: Ms.</option>
+                                <option value="03">03: Mrs.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component s1c2">
+                        <div class="label">
+                            <label for="fname">First Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="fname" name="fname" minlength="2" maxlength="20"
+                                oninput="cap(event, 0)" required />
+                        </div>
+                    </div>
+                    <div class="component s1c3">
+                        <div class="label">
+                            <label for="lname">Last Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="lname" name="lname" minlength="2" maxlength="20"
+                                oninput="cap(event, 0)" required />
+                        </div>
+                    </div>
+                    <div class="component s1c4">
+                        <div class="label">
+                            <label for="dob">Date of Birth</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="date" id="dob" name="dob" min="1930-01-01" max=""
+                                required />
+                        </div>
+                    </div>
+                    <div class="component s1c5">
+                        <div class="label">
+                            <label for="gender">Gender</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="" selected disabled hidden>
+                                    Select Gender
+                                </option>
+                                <option value="01">01: Male</option>
+                                <option value="02">02: Female</option>
+                                <option value="03">03: Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component s1c6">
+                        <div class="label">
+                            <label for="maritalstatus">Marital Status</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="maritalstatus" name="maritalstatus" required>
+                                <option value="" selected disabled hidden>
+                                    Select your marital status
+                                </option>
+                                <option value="01">01: Single</option>
+                                <option value="02">02: Married</option>
+                                <option value="03">03: Divorced</option>
+                                <option value="04">04: Widowed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component s1c7">
+                        <div class="label">
+                            <label for="annualincome">Annual Income</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="annualincome" name="annualincome" required>
+                                <option value="" selected disabled hidden>
+                                    Select Annual Income
+                                </option>
+                                <option value="01">01: None</option>
+                                <option value="02">02: Less than 50,000 &#8377</option>
+                                <option value="03">03: Between 50,000 &#8377 - 1,00,000 &#8377</option>
+                                <option value="04">04: Between 1,00,001 &#8377 - 2,00,000 &#8377</option>
+                                <option value="05">05: More than 2,00,000 &#8377</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component s1c8">
+                        <div class="label">
+                            <label for="fathername">Father's Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="fathername" name="fathername" minlength="2"
+                                maxlength="20" oninput="cap(event, 0)" required />
+                        </div>
+                    </div>
+                    <div class="component s1c9">
+                        <div class="label">
+                            <label for="mothername">Mother's Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="mothername" name="mothername" minlength="2"
+                                maxlength="20" oninput="cap(event, 0)" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section section-2">
+                <div class="section-title">Address Information</div>
+                <div class="section-components-2">
+                    <div class="component s2c1">
+                        <div class="label">
+                            <label for="add1">Address 1</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="add1" name="add1" minlength="2" maxlength="30"
+                                oninput="cap(event, 2)" required />
+                        </div>
+                    </div>
+                    <div class="component s2c2">
+                        <div class="label">
+                            <label for="add2">Address 2</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="add2" name="add2" minlength="2" maxlength="30"
+                                oninput="cap(event, 2)" required />
+                        </div>
+                    </div>
+                    <div class="component s2c3">
+                        <div class="label">
+                            <label for="add3">Address 3</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="add3 " name="add3" minlength="2" maxlength="30"
+                                oninput="cap(event, 2)" />
+                        </div>
+                    </div>
+                    <div class="component s2c4">
+                        <div class="label">
+                            <label for="state">State</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="state" name="state" required>
+                                <option value="" selected disabled hidden>
+                                    Select a state
+                                </option>
+                                <option value="01">01: Andhra Pradesh</option>
+                                <option value="02">
+                                    02: Arunachal Pradesh
+                                </option>
+                                <option value="03">03: Assam</option>
+                                <option value="04">04: Bihar</option>
+                                <option value="05">05: Chhattisgarh</option>
+                                <option value="06">06: Goa</option>
+                                <option value="07">07: Gujarat</option>
+                                <option value="08">08: Haryana</option>
+                                <option value="09">09: Himachal Pradesh</option>
+                                <option value="10">
+                                    10: Jammu and Kashmir
+                                </option>
+                                <option value="11">11: Jharkhand</option>
+                                <option value="12">12: Karnataka</option>
+                                <option value="13">13: Kerala</option>
+                                <option value="14">14: Madhya Pradesh</option>
+                                <option value="15">15: Maharashtra</option>
+                                <option value="16">16: Manipur</option>
+                                <option value="17">17: Meghalaya</option>
+                                <option value="18">18: Mizoram</option>
+                                <option value="19">19: Nagaland</option>
+                                <option value="20">20: Odisha</option>
+                                <option value="21">21: Punjab</option>
+                                <option value="22">22: Rajasthan</option>
+                                <option value="23">23: Sikkim</option>
+                                <option value="24">24: Tamil Nadu</option>
+                                <option value="25">25: Telangana</option>
+                                <option value="26">26: Tripura</option>
+                                <option value="27">27: Uttar Pradesh</option>
+                                <option value="28">28: Uttarakhand</option>
+                                <option value="29">29: West Bengal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component s2c5">
+                        <div class="label">
+                            <label for="district">District</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="district" name="district" minlength="3"
+                                maxlength="20" oninput="cap(event)" required />
+                        </div>
+                    </div>
+                    <div class="component s2c6">
+                        <div class="label">
+                            <label for="city">City</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="city" name="city" minlength="3" maxlength="20"
+                                oninput="cap(event, 0)" required />
+                        </div>
+                    </div>
+                    <div class="component s2c7">
+                        <div class="label">
+                            <label for="pincode">Pincode</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="pincode" name="pincode" minlength="6"
+                                maxlength="6" oninput="number(event)" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section section-3">
+                <div class="section-title">Identity Information</div>
+                <div class="section-components-2">
+                    <div class="component s3c1">
+                        <div class="label">
+                            <label for="aadharno">Aadhar No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="aadharno" name="aadharno" minlength="14"
+                                maxlength="14" oninput="number(event, 1, 1)" required />
+                        </div>
+                    </div>
+                    <div class="component s3c2">
+                        <div class="label">
+                            <label for="panno">Pan No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="panno" name="panno" minlength="10"
+                                maxlength="10" oninput="cap(event, 3, 2)" required />
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="section section-4">
+                <div class="section-title">Contact Information</div>
+                <div class="section-components-2">
+                    <div class="component s4c1">
+                        <div class="label">
+                            <label for="primaryno">Primary Phone Number</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="primaryno" name="primaryno" minlength="10"
+                                maxlength="10" oninput="number(event)" required />
+                        </div>
+                    </div>
+                    <div class="component s4c2">
+                        <div class="label">
+                            <label for="secondaryno">Secondary Phone Number</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="secondaryno" name="secondaryno" minlength="10"
+                                maxlength="10" oninput="number(event)" required />
+                        </div>
+                    </div>
+                    <div class="component s4c3">
+                        <div class="label">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="email" id="email" name="email" minlength="3"
+                                maxlength="40" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="nominees" class="section">
+                <div id="surety-text" class="section-title">Nominee Details</div>
+                <div class="section-components-2">
+                    <div class="component heading">
+                        <div class="input-field" style="font-weight:bold">
+                            Person One Details
+                        </div>
+                    </div>
+                    <div class="component heading">
+                        <div class="input-field" style="font-weight:bold">
+                            Person Two Details
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="name1">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="name1" name="name1" minlength="2"
+                                maxlength="20" oninput="cap(event)" required />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="name2">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="name2" name="name2" minlength="2"
+                                maxlength="20" oninput="cap(event)" required />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="relation1">Relation</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="relation1" name="relation1" required>
+                                <option value="" selected disabled hidden>Select Relation</option>
+                                <option value="01">Father</option>
+                                <option value="02">Mother</option>
+                                <option value="03">Brother</option>
+                                <option value="04">Sister</option>
+                                <option value="05">Spouse</option>
+                                <option value="06">Child</option>
+                                <option value="07">Grandparent</option>
+                                <option value="08">Grandchild</option>
+                                <option value="09">Aunt</option>
+                                <option value="10">Uncle</option>
+                                <option value="11">Cousin</option>
+                                <option value="12">In-law</option>
+                                <option value="13">Friend</option>
+                                <option value="14">Guardian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="relation2">Relation</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="relation2" name="relation2" required>
+                                <option value="" selected disabled hidden>Select Relation</option>
+                                <option value="01">Father</option>
+                                <option value="02">Mother</option>
+                                <option value="03">Brother</option>
+                                <option value="04">Sister</option>
+                                <option value="05">Spouse</option>
+                                <option value="06">Child</option>
+                                <option value="07">Grandparent</option>
+                                <option value="08">Grandchild</option>
+                                <option value="09">Aunt</option>
+                                <option value="10">Uncle</option>
+                                <option value="11">Cousin</option>
+                                <option value="12">In-law</option>
+                                <option value="13">Friend</option>
+                                <option value="14">Guardian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="nadd1">Address</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="nadd1" name="nadd1" minlength="2"
+                                maxlength="100" oninput="cap(event, 2)" required />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="nadd2">Address</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="nadd2" name="nadd2" minlength="2"
+                                maxlength="100" oninput="cap(event, 2)" required />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="aadharno1">Aadhar No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="aadharno1" name="aadharno1" minlength="14"
+                                maxlength="14" oninput="number(event, 1, 1)" required />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="aadharno2">Aadhar No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="aadharno2" name="aadharno2" minlength="14"
+                                maxlength="14" oninput="number(event, 1, 1)" required />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="contactno1">Contact No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="contactno1" name="contactno1" minlength="10"
+                                maxlength="10" oninput="number(event)" required />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="contactno2">Contact No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="contactno2" name="contactno2" minlength="10"
+                                maxlength="10" oninput="number(event)" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <input class="btn btn-primary" type="submit" value="Submit" />
+                <input class="btn btn-danger" type="reset" value="Reset" />
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // To set max value of field - Date of Birth
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById("dob").setAttribute('max', today);
+        });
+    </script>
+</div>
+
+{% endblock content %}

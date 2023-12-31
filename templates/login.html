@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+{% block content %}
+<div class="login">
+    <div>
+        <div class="login-form section">
+            <form action={{route.login}} method="POST" autocomplete="on">
+                <div class="section-components-1">
+                    <div class="section-title">
+                        <div>Login</div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="bid">Banker ID</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="bid" name="bid" minlength="3" maxlength="3"
+                                oninput="number(event)" required />
+                            <i class="fa fa-user" style="margin-left: -30px; cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="bpass">Password</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="password" id="bpass" name="bpass" minlength="8"
+                                maxlength="15" oninput="showPass()" required />
+                            <i class="fa fa-lock" style="margin-left: -30px; cursor: pointer;"></i>
+                            <i class="far fa-eye" id="togglePassword" style="margin-left: -45px; cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-success" value="Login" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#navigation").hide();
+            const togglePassword = $("#togglePassword");
+            const passwd = $("#bpass");
+            $("#togglePassword").hide();
+
+            togglePassword.on("click", function () {
+                const type = passwd.attr("type") === "password" ? "text" : "password";
+                passwd.attr("type", type);
+                $(this).toggleClass("fa-eye fa-eye-slash");
+            });
+        });
+
+        const showPass = () => {
+            if ($("#bpass").val() == "") {
+                $("#togglePassword").hide();
+            } else {
+                $("#togglePassword").show();
+            }
+        }
+    </script>
+</div>
+{% endblock %}

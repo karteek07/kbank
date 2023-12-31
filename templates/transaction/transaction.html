@@ -1,0 +1,743 @@
+{% extends "base.html" %}
+{% block title %}Transaction{% endblock title %}
+{% block navigation %}
+<div>
+	<i class="fa fa-house"></i>
+	<a href="{{route.home}}"> Home </a>
+</div>
+<div>
+	<i class="fa fa-forward"></i>
+	Transaction
+</div>
+{% endblock navigation %}
+{% block content %}
+<div id="transaction">
+	<div id="transaction-header" class="page-header text-center">
+		<h1>Transactions</h1>
+	</div>
+	<div id="transaction-content">
+		<div id="account-id">
+			<div class="section">
+				<div class="section-title">Account Number</div>
+				<div class="section-components">
+					<div class="component">
+						<div class="label">
+							<label for="acctno">Account No.</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="acctno" name="acctno" oninput="number(event)"
+								minlength="3" maxlength="6" required />
+						</div>
+					</div>
+					<div class="">
+						<input class="btn btn-primary my-2" id="fetchAccountData" type="button"
+							value="Fetch Account Details" onclick="getAccountData()" />
+					</div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+		<div id="account-info">
+			<div class="section">
+				<div class="section-title">Account Details</div>
+				<div class="section-components-2">
+					<div class="component">
+						<div class="label">
+							<label for="aid">Account No.</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="aid" name="aid" readonly />
+							<a id="moreAccountInfo" href="#">
+								<i class="fa-solid fa-circle-info" style="margin-left: -30px; cursor: pointer;"></i>
+							</a>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="atype">Account Type</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="atype" name="atype" disabled>
+								<option value="" selected disabled hidden>
+									Select Account Type
+								</option>
+								<option value="01">01: Saving</option>
+								<option value="02">02: Loan</option>
+								<option value="03">03: Fixed Deposit (FD)</option>
+								<option value="04">04: Recurring Deposit (RD)</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="customer-info">
+			<div id="shortCustomerInfo">
+				<div class="section">
+					<div class="section-title">Customer Details</div>
+					<div class="section-components-2">
+						<div class="component">
+							<div class="label">
+								<label for="cid">Customer ID</label>
+							</div>
+							<div class="input-field">
+								<input class="form-control" type="text" id="cid" name="cid" readonly />
+								<a id="moreCustomerInfo" href="#">
+									<i class="fa-solid fa-circle-info" style="margin-left: -30px; cursor: pointer;"></i>
+								</a>
+							</div>
+						</div>
+						<div class="component">
+							<div class="label">
+								<label for="fullname">Full Name</label>
+							</div>
+							<div class="input-field">
+								<input class="form-control" type="text" id="fullname" name="fullname" readonly />
+							</div>
+						</div>
+						<div class="component">
+							<div class="label">
+								<label for="gender">Gender</label>
+							</div>
+							<div class="input-field">
+								<select class="form-control" id="gender" name="gender" disabled>
+									<option value="" selected disabled hidden>
+										Select Gender
+									</option>
+									<option value="01">01: Male</option>
+									<option value="02">02: Female</option>
+									<option value="03">03: Other</option>
+								</select>
+							</div>
+						</div>
+						<div class="component">
+							<div class="label">
+								<label for="dob">Date of Birth</label>
+							</div>
+							<div class="input-field">
+								<input class="form-control" type="date" id="dob" name="dob" readonly />
+							</div>
+						</div>
+						<div class="component">
+							<div class="label">
+								<label for="aadharno">Aadhar No.</label>
+							</div>
+							<div class="input-field">
+								<input class="form-control" type="text" id="aadharno" name="aadharno" readonly />
+							</div>
+						</div>
+						<div class="component">
+							<div class="label">
+								<label for="panno">Pan No.</label>
+							</div>
+							<div class="input-field">
+								<input class="form-control" type="text" id="panno" name="panno" readonly />
+							</div>
+						</div>
+						<div class="component">
+							<div class="label">
+								<label for="primaryno">Primary Phone Number</label>
+							</div>
+							<div class="input-field">
+								<input class="form-control" type="text" id="primaryno" name="primaryno" readonly />
+							</div>
+						</div>
+						<div class="component">
+							<div class="label">
+								<label for="email">Email</label>
+							</div>
+							<div class="input-field">
+								<input class="form-control" type="email" id="email" name="email" readonly />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="account-saving-info">
+			<div id="saving" class="section">
+				<div class="section-title">Saving Details</div>
+				<div class="section-components-2">
+					<div class="component">
+						<div class="label">
+							<label for="sbalance">Balance</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="sbalance" name="sbalance" readonly />
+						</div>
+					</div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+		<div id="account-loan-info">
+			<div id="loan" class="section">
+				<div class="section-title">Loan Details</div>
+				<div class="section-components-2">
+					<div class="component">
+						<div class="label">
+							<label for="lbalance">Balance</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="lbalance" name="lbalance" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="lamount">Loan Amount</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="lamount" name="lamount" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="lrepaymenttenure">Repayment Tenure</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="lrepaymenttenure" name="lrepaymenttenure" disabled>
+								<option value="" selected disabled hidden>
+									Select Repayment Tenure
+								</option>
+								<option value="01">06 Months</option>
+								<option value="02">12 Months</option>
+								<option value="03">24 Months</option>
+								<option value="04">36 Months</option>
+								<option value="05">48 Months</option>
+							</select>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="lrepaymentir">Interest Rate</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="lrepaymentir" name="lrepaymentir" disabled>
+								<option value="" selected disabled hidden>
+
+								</option>
+								<option value="01">1% per month</option>
+								<option value="02">10% per annum</option>
+								<option value="03">6% per annum</option>
+								<option value="04">5% per annum</option>
+								<option value="05">4% per annum</option>
+							</select>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="ltramount">Total Repayment Amount (With Interest)</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="ltramount" name="ltramount" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="linterestamount">Interest Amount</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="linterestamount" name="linterestamount"
+								readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="lmi">Monthly Installment</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="lmi" name="lmi" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="lcreatedt">Created</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="lcreatedt" name="lcreatedt" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="account-fd-info">
+			<div id="fd" class="section">
+				<div class="section-title">Fixed Deposit (FD) Details</div>
+				<div class="section-components-2">
+					<div class="component">
+						<div class="label">
+							<label for="fdamount">Deposit Amount</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="fdamount" name="fdamount" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="fdterm">Deposit Term</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="fdterm" name="fdterm" disabled>
+								<option value="" selected disabled hidden>
+									Select Deposit Term
+								</option>
+								<option value="01">1 Year</option>
+								<option value="02">3 Year</option>
+								<option value="03">5 Year</option>
+								<option value="04">7 Year</option>
+								<option value="05">10 Year</option>
+							</select>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="fdir">Interest Rate</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="fdir" name="fdir" disabled>
+								<option value="" selected disabled hidden>
+
+								</option>
+								<option value="01">5%</option>
+								<option value="02">7%</option>
+								<option value="03">9%</option>
+								<option value="04">11%</option>
+								<option value="05">15%</option>
+							</select>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="fdmamount">Maturity Amount (With Interest)</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="fdmamount" name="fdmamount" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="fdinterestamount">Interest Amount</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="fdinterestamount" name="fdinterestamount"
+								readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="fdcreatedt">Created</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="fdcreatedt" name="fdcreatedt" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="account-rd-info">
+			<div id="rd" class="section">
+				<div class="section-title">Recurring Deposit Details</div>
+				<div class="section-components-2">
+					<div class="component">
+						<div class="label">
+							<label for="rdbalance">Balance</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="rdbalance" name="rdbalance" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="rdamount">R.D Amount</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="rdamount" name="rdamount" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="rdterm">R.D Term</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="rdterm" name="rdterm" disabled>
+								<option value="" selected disabled hidden>
+									Select R.D Term
+								</option>
+								<option value="01">1 Year</option>
+								<option value="02">2 Year</option>
+								<option value="03">3 Year</option>
+								<option value="04">5 Year</option>
+								<option value="05">10 Year</option>
+							</select>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="rdir">Interest Rate</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="rdir" name="rdir" disabled>
+								<option value="" selected disabled hidden>
+
+								</option>
+								<option value="01">10% per annum</option>
+								<option value="02">8% per annum</option>
+								<option value="03">7% per annum</option>
+								<option value="04">6% per annum</option>
+								<option value="05">5% per annum</option>
+							</select>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="rdmamount">Maturity Amount (With Interest)</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="rdmamount" name="rdmamount" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="rdinterestamount">Interest Amount</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="rdinterestamount" name="rdinterestamount"
+								readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="rdmi">Monthly Installment</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="rdmi" name="rdmi" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="rdcreatedt">Created</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="rdcreatedt" name="rdcreatedt" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="transaction-details">
+			<div class="section">
+				<div class="section-title">Transaction Details</div>
+				<div class="section-components-2">
+					<div class="component">
+						<div class="label">
+							<label for="ttype">Transaction Type</label>
+						</div>
+						<div class="input-field">
+							<select class="form-control" id="ttype" name="ttype"  onchange="onTransactionTypeChange()" >
+								<option value="" selected disabled hidden>
+									Select Transaction Type
+								</option>
+								<option value="01">01: Deposit</option>
+								<option value="02">02: Withdraw</option>
+								<option value="03">03: Transfer</option>
+							</select>
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label id="lbl_description" for="description">Description</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="description" name="description" minlength="2"
+								maxlength="30" oninput="cap(event, 2)" />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="amount">Amount</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="amount" name="amount" minlength="3"
+								maxlength="6" oninput="number(event)" />
+						</div>
+					</div>
+					<div id="acctno2" class="component">
+						<div class="label">
+							<label for="aid2">Transferring Account No.</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="aid2" name="aid2" minlength="6"
+								maxlength="6" oninput="number(event)" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="buttons">
+				<input class="btn btn-primary" id="executeTransactionBtn" type="button" value="Execute Transaction"
+					onclick="onExecuteTransaction()" />
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#account-info").hide();
+		$("#customer-info").hide();
+		$("#account-saving-info").hide();
+		$("#account-loan-info").hide();
+		$("#account-fd-info").hide();
+		$("#account-rd-info").hide();
+		$("#transaction-details").hide();
+
+		$("#acctno2").hide()
+	});
+
+	const getAccountData = async () => {
+		$("#account-info").hide();
+		$("#customer-info").hide();
+		$("#account-saving-info").hide();
+		$("#account-loan-info").hide();
+		$("#account-fd-info").hide();
+		$("#account-rd-info").hide();
+
+		$("#executeTransactionBtn").show();
+		$("#ttype").attr("disabled", false);
+		$("#amount").attr("disabled", false);
+		$("#description").attr("disabled", false);
+		$("#ttype").val("");
+		$("#amount").val("");
+		$("#description").val("");
+
+		const acctno = $("#acctno").val();
+		if (acctno == "") {
+			alert("Please Enter Account No.");
+		} else {
+			let body = { "fields": "all", "searchby": "02", "value": acctno }
+			let data = await postData(accountSearch, body);
+			data = data.results;
+			if (data.length == 0) {
+				alert(`No Account found with Account No. ${acctno}`)
+				return;
+			}
+			console.log(data[0]);
+			data = data[0];
+
+			$("#account-info").show();
+			$("#customer-info").show();
+
+			body = { "cust_id": data[1] };
+			d = await postData(customerShortInfo, body);
+			let cid = d.cid;
+			let title = d.title;
+			let fname = d.fname;
+			let lname = d.lname;
+			let dob = d.dob;
+			let gender = d.gender;
+			let aadharno = d.aadharno;
+			let panno = d.panno;
+			let primaryno = d.primaryno;
+			let email = d.email;
+
+			$("#cid").val(cid);
+			$("#fullname").val(fullname(title, fname, lname));
+			$("#dob").val(dob);
+			$("#gender").val(gender);
+			$("#aadharno").val(aadharno);
+			$("#panno").val(panno);
+			$("#primaryno").val(primaryno);
+			$("#email").val(email);
+			$("#moreCustomerInfo").attr("href", `${customerInfo}?cid=${cid}`)
+
+
+			$("#aid").val(data[0])
+			$("#atype").val(data[2])
+
+			let atype = $("#atype").val();
+			let interestrate = data[3];
+			let purpose = data[4];
+			let balance = data[5];
+			let amount = data[6];
+			let term = data[7];
+			let finalamount = data[8];
+			let interestamount = data[9]
+			let monthlyinstallment = data[10];
+			let createdt = data[12];
+
+			$("#moreAccountInfo").attr("href", `${accountInfo}?aid=${parseInt(data[0])}`)
+
+			if (atype == "01") {
+				$("#account-saving-info").show();
+				$("#sbalance").val(balance+" ₹");
+				$("#spurpose").val(purpose);
+				$("#screatedt").val(createdt);
+				$("#transaction-details").show();
+
+				$("#account-loan-info").hide();
+				$("#account-fd-info").hide();
+				$("#account-rd-info").hide();
+			} else if (atype == "02") {
+				$("#account-loan-info").show();
+				$("#lbalance").val(balance+" ₹");
+				$("#lamount").val(amount);
+				$("#lpurpose").val(purpose);
+				$("#lrepaymenttenure").val(term);
+				$("#lrepaymentir").val(interestrate);
+				$("#ltramount").val(finalamount+" ₹");
+				$("#linterestamount").val(interestamount+" ₹");
+				$("#lmi").val(monthlyinstallment+" ₹");
+				$("#lcreatedt").val(createdt);
+
+				$("#account-saving-info").hide();
+				$("#account-fd-info").hide();
+				$("#account-rd-info").hide();
+				$("#transaction-details").hide();
+			} else if (atype == "03") {
+				$("#account-fd-info").show();
+				$("#fdamount").val(amount);
+				$("#fdpurpose").val(purpose);
+				$("#fdterm").val(term);
+				$("#fdir").val(interestrate);
+				$("#fdmamount").val(finalamount+" ₹");
+				$("#fdinterestamount").val(interestamount+" ₹");
+				$("#fdcreatedt").val(createdt);
+
+				$("#account-saving-info").hide();
+				$("#account-loan-info").hide();
+				$("#account-rd-info").hide();
+				$("#transaction-details").hide();
+			} else if (atype == "04") {
+				$("#account-rd-info").show();
+				$("#rdbalance").val(balance+" ₹");
+				$("#rdamount").val(amount+" ₹");
+				$("#rdpurpose").val(purpose);
+				$("#rdterm").val(term);
+				$("#rdir").val(interestrate);
+				$("#rdmamount").val(finalamount+" ₹");
+				$("#rdinterestamount").val(interestamount+" ₹");
+				$("#rdmi").val(monthlyinstallment+" ₹");
+				$("#rdcreatedt").val(createdt);
+
+				$("#account-saving-info").hide();
+				$("#account-loan-info").hide();
+				$("#account-fd-info").hide();
+				$("#transaction-details").hide();
+			}
+		}
+	}
+
+	const onTransactionTypeChange = async () => {
+		const ttype = $("#ttype").val();
+		if(ttype=="03"){
+			$("#acctno2").show();
+		} else {
+			$("#acctno2").hide()
+		}
+	}
+
+	const onExecuteTransaction = async () => {
+		const cid = $("#cid").val();
+		const acctno = $("#acctno").val();
+		const atype = $("#atype").val();
+		const ttype = $("#ttype").val();
+		const amount = $("#amount").val();
+		const description = $("#description").val();
+		const sbalance = $("#sbalance").val();
+		let aid2 = $("#aid2").val();
+		if(aid2==""){
+			aid2="0";
+		}
+		
+		console.log(`${acctno} ${atype} ${ttype} ${amount} ${description} ${transaction} ${aid2}`);
+		console.log(aid2);
+
+		if (ttype == null) {
+			alert("Please select Transaction Type");
+			return;
+		}
+
+		if (amount == "") {
+			alert("Please enter Amount");
+			return;
+		}
+
+		if (amount == "0" || amount == "00" || amount == "000" || amount == "0000") {
+			alert("Amount cannot be Zero");
+			return;
+		}
+
+		if (ttype == "02") {
+			if (parseInt(sbalance) < parseInt(amount)) {
+				alert("Withdraw amount cannot be greater than balance amount");
+				return;
+			}
+		}
+
+		if (ttype == "03") {
+			if (parseInt(sbalance) < parseInt(amount)) {
+				alert("Transfer amount cannot be greater than balance amount");
+				return;
+			}
+
+			if (aid2=="") {
+				alert("Enter Second Account No.");
+				return;
+			}
+		}
+
+		if (parseInt(amount)<100) {
+			alert("Minimum amount for transaction is 100 ₹");
+			return;
+		}
+
+		if (parseInt(amount)>100001) {
+			alert("Maximum amount for transaction is 100000 ₹");
+			return;
+		}
+
+		if (description == "") {
+			alert("Please enter Description");
+			return;
+		}
+
+		body = { "cid": cid, "aid": acctno, "aid2": aid2, "atype": atype, "ttype": ttype, "amount": amount, "description": description };
+		let tt;
+		if (ttype == "01") {
+			tt = `Deposit ${amount} ₹ into Account No. ${acctno}`;
+		} else if (ttype == "02") {
+			tt = `Withdraw ${amount} ₹ from Account No. ${acctno}`;
+		} else if (ttype == "03") {
+			tt = `Transfer ${amount} ₹ from Account No. ${acctno} to Another Account No. ${aid2}`;
+		}
+
+		res = confirm(`Are you sure, you want to ${tt}`);
+		if (res == true) {
+			let data = await postData(transaction, body);
+			console.log(data);
+			result = data.result
+			if (result == "success") {
+				if (ttype == "01") {
+					tt = `deposited into Account No. ${acctno}`;
+				} else if (ttype == "02") {
+					tt = `withdrawn from Account No. ${acctno}`;
+				} else if (ttype == "03") {
+					tt = `transferred from Account No. ${acctno} to Account No. ${aid2}`;
+				}
+				alert(`Amount ${amount} ₹ ${tt}`);
+				$("#executeTransactionBtn").hide();
+				$("#aid2").attr("disabled", true);
+				$("#ttype").attr("disabled", true);
+				$("#amount").attr("disabled", true);
+				$("#description").attr("disabled", true);
+			} else if (result == "failure") {
+				alert("Not able to do the transaction, please enquire");
+				return;
+			}
+
+		} else {
+			return;
+		}
+	}
+
+</script>
+
+{% endblock content %}

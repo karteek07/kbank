@@ -1,0 +1,432 @@
+{% extends "base.html" %}
+{% block title %} Customer Info {% endblock title %}
+{% block navigation %}
+<div>
+    <i class="fa fa-house"></i>
+    <a href={{route.home}}> Home </a>
+</div>
+<div>
+    <i class="fa fa-forward"></i>
+    <a href={{route.customer.search}}> Search </a>
+</div>
+<div>
+    <i class="fa fa-forward"></i>
+    Customer Info
+</div>
+{% endblock navigation %}
+{% block content %}
+<div class="cinfo">
+    <div class="page-header text-center">
+        <h1>Customer Info</h1>
+    </div>
+    <div id="customerData" class="cinfo-c2 sections">
+        <div class="section section-1">
+            <div class="section-title">Customer Information</div>
+            <div class="section-components">
+                <div class="component s1c1">
+                    <div class="label">
+                        <label for="cid">Customer ID</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="cid"
+                            name="cid" readonly />
+                    </div>
+                </div>
+                <div class="component s1c2">
+                    <div class="label">
+                        <label for="ctype">Customer Type</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="ctype" name="ctype" disabled>
+                            <option value="" selected disabled hidden>
+                                Select Customer Type
+                            </option>
+                            <option value="01">01: General</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section section-2">
+            <div class="section-title">Personal Information</div>
+            <div class="section-components-2">
+                <div class="component s2c1">
+                    <div class="label">
+                        <label for="fullname">Full Name</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="fullname"
+                            name="fullname" readonly />
+                    </div>
+                </div>
+                <div class="component s2c2">
+                    <div class="label">
+                        <label for="dob">Date of Birth</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="date" id="dob"
+                            name="dob" readonly />
+                    </div>
+                </div>
+                <div class="component s2c3">
+                    <div class="label">
+                        <label for="gender">Gender</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="gender" name="gender" disabled>
+                            <option value="" selected disabled hidden>
+                                Select Gender
+                            </option>
+                            <option value="01">01: Male</option>
+                            <option value="02">02: Female</option>
+                            <option value="03">03: Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="component s2c4">
+                    <div class="label">
+                        <label for="maritalstatus">Marital Status</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="maritalstatus" name="maritalstatus" disabled>
+                            <option value="" selected disabled hidden>
+                                Select your marital status
+                            </option>
+                            <option value="01">01: Single</option>
+                            <option value="02">02: Married</option>
+                            <option value="03">03: Divorced</option>
+                            <option value="04">04: Widowed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="component s2c5">
+                    <div class="label">
+                        <label for="annualincome">Annual Income</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="annualincome" name="annualincome" disabled>
+                            <option value="" selected disabled hidden>
+                                Select Annual Income
+                            </option>
+                            <option value="01">01: None</option>
+                            <option value="02">02: Less than 50,000 &#8377</option>
+                            <option value="03">03: Between 50,000 &#8377 - 1,00,000 &#8377</option>
+                            <option value="04">04: Between 1,00,001 &#8377 - 2,00,000 &#8377</option>
+                            <option value="05">05: More than 2,00,000 &#8377</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="component s2c6">
+                    <div class="label">
+                        <label for="fathername">Father's Name</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="fathername"
+                            name="fathername" readonly />
+                    </div>
+                </div>
+                <div class="component s2c7">
+                    <div class="label">
+                        <label for="mothername">Mother's Name</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="mothername"
+                            name="mothername" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="accountList">
+            <div class="section">
+                <div class="section-title">Account Information</div>
+                <div class="section-components">
+                    <div id="accountTable" class="table-responsive">
+                        <table id="dataTable" class="table table-stripped table-hover" style="margin-bottom:0px">
+                            <thead>
+                                <tr>
+                                    <th class="text-start" style="width:1%">#</th>
+                                    <th class="text-start" style="width:10%">Account No.</th>
+                                    <th class="text-start" style="width:10%">Account Type</th>
+                                    <th class="text-start" style="width:15%">Date Created</th>
+                                    <th class="text-start" style="width:1.55%">More Info</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-3">
+            <div class="section-title">Address Information</div>
+            <div class="section-components-2">
+                <div class="component s3c1">
+                    <div class="label">
+                        <label for="add1">Address 1</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="add1"
+                            name="add1" readonly />
+                    </div>
+                </div>
+                <div class="component s3c2">
+                    <div class="label">
+                        <label for="add2">Address 2</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="add2"
+                            name="add2" readonly />
+                    </div>
+                </div>
+                <div class="component s3c3">
+                    <div class="label">
+                        <label for="add3">Address 3</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="add3"
+                            name="add3" readonly />
+                    </div>
+                </div>
+                <div class="component s3c4">
+                    <div class="label">
+                        <label for="state">State</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="state" name="state" disabled>
+                            <option value="" selected disabled hidden>
+                                Select a state
+                            </option>
+                            <option value="01">01: Andhra Pradesh</option>
+                            <option value="02">
+                                02: Arunachal Pradesh
+                            </option>
+                            <option value="03">03: Assam</option>
+                            <option value="04">04: Bihar</option>
+                            <option value="05">05: Chhattisgarh</option>
+                            <option value="06">06: Goa</option>
+                            <option value="07">07: Gujarat</option>
+                            <option value="08">08: Haryana</option>
+                            <option value="09">09: Himachal Pradesh</option>
+                            <option value="10">
+                                10: Jammu and Kashmir
+                            </option>
+                            <option value="11">11: Jharkhand</option>
+                            <option value="12">12: Karnataka</option>
+                            <option value="13">13: Kerala</option>
+                            <option value="14">14: Madhya Pradesh</option>
+                            <option value="15">15: Maharashtra</option>
+                            <option value="16">16: Manipur</option>
+                            <option value="17">17: Meghalaya</option>
+                            <option value="18">18: Mizoram</option>
+                            <option value="19">19: Nagaland</option>
+                            <option value="20">20: Odisha</option>
+                            <option value="21">21: Punjab</option>
+                            <option value="22">22: Rajasthan</option>
+                            <option value="23">23: Sikkim</option>
+                            <option value="24">24: Tamil Nadu</option>
+                            <option value="25">25: Telangana</option>
+                            <option value="26">26: Tripura</option>
+                            <option value="27">27: Uttar Pradesh</option>
+                            <option value="28">28: Uttarakhand</option>
+                            <option value="29">29: West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="component s3c5">
+                    <div class="label">
+                        <label for="district">District</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="district"
+                            name="district" readonly />
+                    </div>
+                </div>
+                <div class="component s3c6">
+                    <div class="label">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="city"
+                            name="city" readonly />
+                    </div>
+                </div>
+                <div class="component s3c7">
+                    <div class="label">
+                        <label for="pincode">Pincode</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="pincode"
+                            name="pincode" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-4">
+            <div class="section-title">Identity Information</div>
+            <div class="section-components-2">
+                <div class="component s4c1">
+                    <div class="label">
+                        <label for="aadharno">Aadhar No.</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="aadharno"
+                            name="aadharno" readonly />
+                    </div>
+                </div>
+                <div class="component s4c2">
+                    <div class="label">
+                        <label for="panno">Pan No.</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="panno"
+                            name="panno" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-5">
+            <div class="section-title">Contact Information</div>
+            <div class="section-components-2">
+                <div class="component s5c1">
+                    <div class="label">
+                        <label for="primaryno">Primary Phone Number</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="primaryno"
+                            name="primaryno" readonly />
+                    </div>
+                </div>
+                <div class="component s5c2">
+                    <div class="label">
+                        <label for="secondaryno">Secondary Phone Number</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="text" id="secondaryno"
+                            name="secondaryno" readonly />
+                    </div>
+                </div>
+                <div class="component s5c3">
+                    <div class="label">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="form-control form-control-plaintext font-weight-bold" type="email" id="email"
+                            name="email" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        getCustomerData();
+    });
+
+    const getCustomerData = async () => {
+        const url = window.location.href;
+        const params = new URLSearchParams(new URL(url).search);
+        const cid = params.get("cid");
+        let body, data
+        body = { "fields": "all", "searchby": "02", "value": parseInt(cid) }
+        data = await postData(customerSearch, body);
+        let c = data.results;
+
+        if (c.length == "0") {
+            $("#customerData").empty();
+            let notfound = `<div class="data-not-found">
+                <div>No Customer Present with Customer ID: ${cid}</div>
+            </div>`;
+            $("#customerData").append(notfound);
+        } else {
+            debugger;
+            c = data.results[0];
+            $("#cid").val(c[0]);
+            $("#ctype").val(c[1]);
+            $("#fullname").val(fullname(c[2], c[3], c[4]));
+            $("#dob").val(c[5]);
+            $("#gender").val(c[6]);
+            $("#maritalstatus").val(c[7]);
+            $("#annualincome").val(c[8]);
+            $("#fathername").val(c[9]);
+            $("#mothername").val(c[10]);
+            $("#add1").val(c[11]);
+            $("#add2").val(c[12]);
+            $("#add3").val(c[13]);
+            $("#state").val(c[14]);
+            $("#district").val(c[15]);
+            $("#city").val(c[16]);
+            $("#pincode").val(c[17]);
+            $("#aadharno").val(c[18]);
+            $("#panno").val(c[19]);
+            $("#primaryno").val(c[20]);
+            $("#secondaryno").val(c[21]);
+            $("#email").val(c[22]);
+
+            getAccountData();
+
+        }
+    }
+
+    const getAccountData = async () => {
+        const cid = $("#cid").val();
+        let body, data, acctData;
+        body = { "fields": "aid-atype-dt", "searchby": "02", "value": cid }
+        acctData = await postData(accountSearch, body);
+        acctData = acctData.results;
+
+        if (acctData.length == 0) {
+            var accountTable = $('#accountTable');
+            accountTable.empty();
+            data = `<div class="py-2" style="font-weight: bold; margin-left: 0.5%">
+                        No Account(s) found for the customer
+                    </div>`;
+
+            accountTable.append(data)
+            return;
+        }
+
+        //container.empty();
+        var container = $('#tableBody');
+        var containerData = acctData.map(function (item, i) {
+            if (item[1] == "01") {
+                atype = "Saving"
+            } else if (item[1] == "02") {
+                atype = "Loan"
+            } else if (item[1] == "03") {
+                atype = "FD"
+            } else if (item[1] == "04") {
+                atype = "RD"
+            }
+
+            urlval = "{{ url_for('account.accountInfo') }}";
+            data = `<tr>
+                        <th scope='row'>${i + 1}</th>
+                        <td>${item[0]}</td>
+                        <td>${atype}</td>
+                        <td>${item[2]}</td>
+                        <td class="text-center">
+                            <a id="moreInfo" href="${accountInfo}?aid=${parseInt(item[0])}">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </a>
+                        </td>
+                    </tr>`;
+            var $data = $(data);
+
+            return $data;
+
+        });
+
+        container.empty();
+        container.append(containerData);
+
+        dataTable(acctData);
+        
+
+    }
+
+</script>
+
+{% endblock content %}

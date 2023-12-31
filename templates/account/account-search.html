@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %} Account Info {% endblock title %}
+{% block navigation %}
+<div>
+    <i class="fa fa-house"></i>
+    <a href={{route.home}}> Home </a>
+</div>
+<div>
+    <i class="fa fa-forward"></i>
+    Account Search
+</div>
+{% endblock navigation %}
+{% block content %}
+<div id="account-create">
+    <div id="account-search-header" class="page-header text-center">
+        <h1>Account Search</h1>
+    </div>
+    <div id="account-search-content">
+        <div id="accountList">
+            <div class="section">
+                <div class="section-title">Account Information</div>
+                <div class="section-components">
+                    <div class="table-responsive">
+                        <table class="table table-stripped table-hover dataTable" style="margin-bottom:0px">
+                            <thead>
+                                <tr>
+                                    <th class="text-start" style="width:3%">#</th>
+                                    <th class="text-start" style="width:10%">Account No.</th>
+                                    <th class="text-start" style="width:10%">Customer ID</th>
+                                    <th class="text-start" style="width:15%">Customer Name</th>
+                                    <th class="text-start" style="width:10%">Account Type</th>
+                                    <th class="text-start" style="width:15%">Date Created</th>
+                                    <th class="text-start" style="width:5%">More Info</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(async function () {
+        let body, data, acctData, cids;
+        body = { fields: "all", searchby: "01" }
+        acctData = await postData(accountSearch, body);
+        acctData = acctData.results;
+
+        cids = acctData.map(i => i[1]);
+
+        body = { fields: "fullname", value: cids }
+        let cidsData = await postData(customerSearch, body);
+        cidsData = cidsData.results
+        console.log(cidsData);
+
+
+        var container = $('#tableBody');
+        var containerData = acctData.map(function (item, i) {
+            if (item[2] == "01") {
+                atype = "Saving"
+            } else if (item[2] == "02") {
+                atype = "Loan"
+            } else if (item[2] == "03") {
+                atype = "FD"
+            } else if (item[2] == "04") {
+                atype = "RD"
+            }
+
+
+            urlval = "{{ url_for('account.accountInfo') }}";
+            data = `<tr>
+                        <th scope='row'>${i + 1}</th>
+                        <td>${item[0]}</td>
+                        <td>${item[1]}</td>
+                        <td>${fullname(cidsData[i][0], cidsData[i][1], cidsData[i][2])}</td>
+                        <td>${atype}</td>
+                        <td>${item[12]}</td>
+                        <td class="text-center">
+                            <a id="moreInfo" href="${accountInfo}?aid=${parseInt(item[0])}">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </a>
+                        </td>
+                    </tr>`;
+            var $data = $(data);
+            return $data;
+
+        });
+        container.empty();
+        container.append(containerData);
+        $("#accountList").show();
+        dataTable(acctData);
+    });
+
+
+</script>
+{% endblock content %}

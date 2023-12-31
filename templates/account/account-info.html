@@ -1,0 +1,826 @@
+{% extends "base.html" %}
+{% block title %} Account Info {% endblock title %}
+{% block navigation %}
+<div>
+    <i class="fa fa-house"></i>
+    <a href={{route.home}}> Home </a>
+</div>
+<div>
+    <i class="fa fa-forward"></i>
+    Account Info
+</div>
+{% endblock navigation %}
+{% block content %}
+<div id="account-info">
+    <div id="account-info-header" class="page-header text-center">
+        <h1>Account Info</h1>
+    </div>
+    <div id="account-info-content">
+        <div id="account-information">
+            <div class="section">
+                <div class="section-title">Account Details</div>
+                <div class="section-components-2">
+                    <div class="component">
+                        <div class="label">
+                            <label for="aid">Account No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="aid" name="aid" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="atype">Account Type</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="atype" name="atype" disabled>
+                                <option value="" selected disabled hidden>
+                                    Select Account Type
+                                </option>
+                                <option value="01">01: Saving</option>
+                                <option value="02">02: Loan</option>
+                                <option value="03">03: Fixed Deposit (FD)</option>
+                                <option value="04">04: Recurring Deposit (RD)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="customer-information">
+            <div id="shortCustomerInfo">
+                <div class="section">
+                    <div class="section-title">Customer Details</div>
+                    <div class="section-components-2">
+                        <div class="component">
+                            <div class="label">
+                                <label for="cid">Customer ID</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="cid" name="cid" readonly />
+                                <a id="moreCustomerInfo" href="#">
+                                    <i class="fa-solid fa-circle-info" style="margin-left: -30px; cursor: pointer;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="fullname">Full Name</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="fullname" name="fullname" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="gender">Gender</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="gender" name="gender" disabled>
+                                    <option value="" selected disabled hidden>
+                                        Select Gender
+                                    </option>
+                                    <option value="01">01: Male</option>
+                                    <option value="02">02: Female</option>
+                                    <option value="03">03: Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="dob">Date of Birth</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="date" id="dob" name="dob" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="aadharno">Aadhar No.</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="aadharno" name="aadharno" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="panno">Pan No.</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="panno" name="panno" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="primaryno">Primary Phone Number</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="primaryno" name="primaryno" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="email" id="email" name="email" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="account-detailed-information">
+            <div id="account-saving-information">
+                <div id="saving" class="section">
+                    <div class="section-title">Saving Details</div>
+                    <div class="section-components-2">
+                        <div class="component">
+                            <div class="label">
+                                <label for="sbalance">Balance</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="sbalance" name="sbalance" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="sir">Interest Rate</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="sir" name="sir" disabled>
+                                    <option value="01" selected>5% per annum</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="spurpose">Purpose</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="spurpose" name="spurpose" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="screatedt">Created</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="screatedt" name="screatedt" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="account-loan-information">
+                <div id="loan" class="section">
+                    <div class="section-title">Loan Details</div>
+                    <div class="section-components-2">
+                        <div class="component">
+                            <div class="label">
+                                <label for="lbalance">Balance</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="lbalance" name="lbalance" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="lamount">Loan Amount</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="lamount" name="lamount" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="lpurpose">Purpose</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="lpurpose" name="lpurpose" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="lrepaymenttenure">Repayment Tenure</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="lrepaymenttenure" name="lrepaymenttenure" disabled>
+                                    <option value="" selected disabled hidden>
+                                        Select Repayment Tenure
+                                    </option>
+                                    <option value="01">06 Months</option>
+                                    <option value="02">12 Months</option>
+                                    <option value="03">24 Months</option>
+                                    <option value="04">36 Months</option>
+                                    <option value="05">48 Months</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="lrepaymentir">Interest Rate</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="lrepaymentir" name="lrepaymentir" disabled>
+                                    <option value="" selected disabled hidden>
+
+                                    </option>
+                                    <option value="01">1% per month</option>
+                                    <option value="02">10% per annum</option>
+                                    <option value="03">6% per annum</option>
+                                    <option value="04">5% per annum</option>
+                                    <option value="05">4% per annum</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="ltramount">Total Repayment Amount (With Interest)</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="ltramount" name="ltramount" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="linterestamount">Interest Amount</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="linterestamount" name="linterestamount"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="lmi">Monthly Installment</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="lmi" name="lmi" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="lcreatedt">Created</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="lcreatedt" name="lcreatedt" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="account-fd-information">
+                <div id="fd" class="section">
+                    <div class="section-title">Fixed Deposit (FD) Details</div>
+                    <div class="section-components-2">
+                        <div class="component">
+                            <div class="label">
+                                <label for="fdamount">Deposit Amount</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="fdamount" name="fdamount" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="fdpurpose">Purpose</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="fdpurpose" name="fdpurpose" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="fdterm">Deposit Term</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="fdterm" name="fdterm" disabled>
+                                    <option value="" selected disabled hidden>
+                                        Select Deposit Term
+                                    </option>
+                                    <option value="01">1 Year</option>
+                                    <option value="02">3 Year</option>
+                                    <option value="03">5 Year</option>
+                                    <option value="04">7 Year</option>
+                                    <option value="05">10 Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="fdir">Interest Rate</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="fdir" name="fdir" disabled>
+                                    <option value="" selected disabled hidden>
+
+                                    </option>
+                                    <option value="01">5%</option>
+                                    <option value="02">7%</option>
+                                    <option value="03">9%</option>
+                                    <option value="04">11%</option>
+                                    <option value="05">15%</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="fdmamount">Maturity Amount (With Interest)</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="fdmamount" name="fdmamount" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="fdinterestamount">Interest Amount</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="fdinterestamount" name="fdinterestamount"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="fdcreatedt">Created</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="fdcreatedt" name="fdcreatedt" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="account-rd-information">
+                <div id="rd" class="section">
+                    <div class="section-title">Recurring Deposit Details</div>
+                    <div class="section-components-2">
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdbalance">Balance</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="rdbalance" name="rdbalance" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdamount">R.D Amount</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="rdamount" name="rdamount" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdpurpose">Purpose</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="rdpurpose" name="rdpurpose" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdterm">R.D Term</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="rdterm" name="rdterm" disabled>
+                                    <option value="" selected disabled hidden>
+                                        Select R.D Term
+                                    </option>
+                                    <option value="01">1 Year</option>
+                                    <option value="02">2 Year</option>
+                                    <option value="03">3 Year</option>
+                                    <option value="04">5 Year</option>
+                                    <option value="05">10 Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdir">Interest Rate</label>
+                            </div>
+                            <div class="input-field">
+                                <select class="form-control" id="rdir" name="rdir" disabled>
+                                    <option value="" selected disabled hidden>
+
+                                    </option>
+                                    <option value="01">10% per annum</option>
+                                    <option value="02">8% per annum</option>
+                                    <option value="03">7% per annum</option>
+                                    <option value="04">6% per annum</option>
+                                    <option value="05">5% per annum</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdmamount">Maturity Amount (With Interest)</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="rdmamount" name="rdmamount" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdinterestamount">Interest Amount</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="rdinterestamount" name="rdinterestamount"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdmi">Monthly Installment</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="rdmi" name="rdmi" readonly />
+                            </div>
+                        </div>
+                        <div class="component">
+                            <div class="label">
+                                <label for="rdcreatedt">Created</label>
+                            </div>
+                            <div class="input-field">
+                                <input class="form-control" type="text" id="rdcreatedt" name="rdcreatedt" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="transaction-information">
+            <div class="section">
+                <div class="section-title">Transaction Details</div>
+                <div class="section-components">
+                    <div id="transactionTable" class="table-responsive">
+                        <table id="paginateTable" class="table table-stripped table-hover dataTable"
+                            style="margin-bottom:0px">
+                            <thead>
+                                <tr>
+                                    <th class="text-start" style="width:3%">#</th>
+                                    <th class="text-start">Type</th>
+                                    <th class="text-start" style="width:15%">Account No. 2</th>
+                                    <th class="text-start" style="width:8%">Amount</th>
+                                    <th class="text-start" style="padding-left: 2%">Description</th>
+                                    <th class="text-start">Transaction (Date-Time)</th>
+                                </tr>
+                                
+                            </thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="surety-information">
+            <div id="surety" class="section">
+                <div id="surety-text" class="section-title">Surety Details</div>
+                <div class="section-components-2">
+                    <div class="component heading">
+                        <div class="input-field" style="font-weight:bold">
+                            Person One
+                        </div>
+                    </div>
+                    <div class="component heading">
+                        <div class="input-field" style="font-weight:bold">
+                            Person Two
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="name1">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="name1" name="name1" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="name2">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="name2" name="name2" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="relation1">Relation</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="relation1" name="relation1" disabled>
+                                <option value="" selected disabled hidden>Select Relation</option>
+                                <option value="01">Father</option>
+                                <option value="02">Mother</option>
+                                <option value="03">Brother</option>
+                                <option value="04">Sister</option>
+                                <option value="05">Spouse</option>
+                                <option value="06">Child</option>
+                                <option value="07">Grandparent</option>
+                                <option value="08">Grandchild</option>
+                                <option value="09">Aunt</option>
+                                <option value="10">Uncle</option>
+                                <option value="11">Cousin</option>
+                                <option value="12">In-law</option>
+                                <option value="13">Friend</option>
+                                <option value="14">Guardian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="relation2">Relation</label>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="relation2" name="relation2" disabled>
+                                <option value="" selected disabled hidden>Select Relation</option>
+                                <option value="01">Father</option>
+                                <option value="02">Mother</option>
+                                <option value="03">Brother</option>
+                                <option value="04">Sister</option>
+                                <option value="05">Spouse</option>
+                                <option value="06">Child</option>
+                                <option value="07">Grandparent</option>
+                                <option value="08">Grandchild</option>
+                                <option value="09">Aunt</option>
+                                <option value="10">Uncle</option>
+                                <option value="11">Cousin</option>
+                                <option value="12">In-law</option>
+                                <option value="13">Friend</option>
+                                <option value="14">Guardian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="add1">Address</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="add1" name="add1" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="add2">Address</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="add2" name="add2" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="aadharno1">Aadhar No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="aadharno1" name="aadharno1" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="aadharno2">Aadhar No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="aadharno2" name="aadharno2" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="contactno1">Contact No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="contactno1" name="contactno1" readonly />
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="label">
+                            <label for="contactno2">Contact No.</label>
+                        </div>
+                        <div class="input-field">
+                            <input class="form-control" type="text" id="contactno2" name="contactno2" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        getAccountData();
+    });
+
+    const getAccountData = async () => {
+        const url = window.location.href;
+        const params = new URLSearchParams(new URL(url).search);
+        const aid = params.get("aid");
+
+        let body, data;
+        body = { "fields": "all", "searchby": "02", "value": parseInt(aid) }
+        data = await postData(accountSearch, body);
+        let c = data.results;
+        console.log(c)
+
+        if (c.length == "0") {
+            $("#account-info-content").empty();
+            let notfound = `<div class="data-not-found">
+                <div>No Account Present with Account No. : ${aid}</div>
+            </div>`;
+            $("#account-info-content").append(notfound);
+            return;
+        } else {
+            c = data.results[0];
+            $("#aid").val(c[0])
+            $("#atype").val(c[2])
+            body = { "cust_id": c[1] };
+            data = await postData(customerShortInfo, body);
+            let cid = data.cid;
+            let ctype = data.ctype;
+            let title = data.title;
+            let fname = data.fname;
+            let lname = data.lname;
+            let dob = data.dob;
+            let gender = data.gender;
+            let fathername = data.fathername;
+            let mothername = data.mothername;
+            let annualincome = data.annualincome;
+
+            let aadharno = data.aadharno;
+            let panno = data.panno;
+
+            let primaryno = data.primaryno;
+            let email = data.email;
+
+            $("#cid").val(cid);
+
+            $("#ctype").attr("disabled", true);
+            $("#ctype").val(ctype);
+
+            $("#fullname").val(fullname(title, fname, lname));
+
+            $("#dob").val(dob);
+
+            $("#gender").attr("disabled", true);
+            $("#gender").val(gender);
+
+            $("#annualincome").attr("disabled", true);
+            $("#annualincome").val(annualincome);
+
+            $("#fathername").val(fathername);
+            $("#mothername").val(mothername);
+
+            $("#aadharno").val(aadharno);
+            $("#panno").val(panno);
+
+            $("#primaryno").val(primaryno);
+            $("#email").val(email);
+
+            $("#moreCustomerInfo").attr("href", `${customerInfo}?cid=${cid}`)
+
+            let atype = $("#atype").val();
+            let interestrate = c[3];
+            let purpose = c[4];
+            let balance = c[5];
+            let amount = c[6];
+            let term = c[7];
+            let finalamount = c[8];
+            let interestamount = c[9]
+            let monthlyinstallment = c[10];
+            let createdt = c[12];
+
+            if (atype == "01") {
+                $("#account-saving-information").show();
+                $("#sbalance").val(balance+" ₹");
+                $("#spurpose").val(purpose);
+                $("#screatedt").val(createdt);
+                $("#surety-text").text("Nominee Details");
+
+                $("#account-loan-information").hide();
+                $("#account-fd-information").hide();
+                $("#account-rd-information").hide();
+            } else if (atype == "02") {
+                $("#account-loan-information").show();
+                $("#lbalance").val(balance+" ₹");
+                $("#lamount").val(amount+" ₹");
+                $("#lpurpose").val(purpose);
+                $("#lrepaymenttenure").val(term);
+                $("#lrepaymentir").val(interestrate);
+                $("#ltramount").val(finalamount+" ₹");
+                $("#linterestamount").val(interestamount+" ₹");
+                $("#lmi").val(monthlyinstallment+" ₹");
+                $("#lcreatedt").val(createdt);
+                $("#surety-text").text("Surety Details");
+
+                $("#account-saving-information").hide();
+                $("#account-fd-information").hide();
+                $("#account-rd-information").hide();
+            } else if (atype == "03") {
+                $("#account-fd-information").show();
+                $("#fdamount").val(amount+" ₹");
+                $("#fdpurpose").val(purpose);
+                $("#fdterm").val(term);
+                $("#fdir").val(interestrate);
+                $("#fdmamount").val(finalamount+" ₹");
+                $("#fdinterestamount").val(interestamount+" ₹");
+                $("#fdcreatedt").val(createdt);
+                $("#surety-text").text("Nominee Details");
+
+                $("#account-saving-information").hide();
+                $("#account-loan-information").hide();
+                $("#account-rd-information").hide();
+            } else if (atype == "04") {
+                $("#account-rd-information").show();
+                $("#rdbalance").val(balance+" ₹");
+                $("#rdamount").val(amount+" ₹");
+                $("#rdpurpose").val(purpose);
+                $("#rdterm").val(term);
+                $("#rdir").val(interestrate);
+                $("#rdmamount").val(finalamount+" ₹");
+                $("#rdinterestamount").val(interestamount+" ₹");
+                $("#rdmi").val(monthlyinstallment+" ₹");
+                $("#rdcreatedt").val(createdt);
+                $("#surety-text").text("Nominee Details");
+
+                $("#account-saving-information").hide();
+                $("#account-loan-information").hide();
+                $("#account-fd-information").hide();
+            }
+
+            $("#name1").val(c[13]);
+            $("#name2").val(c[14]);
+            $("#relation1").val(c[15]);
+            $("#relation2").val(c[16]);
+            $("#add1").val(c[17]);
+            $("#add2").val(c[18]);
+            $("#aadharno1").val(c[19]);
+            $("#aadharno2").val(c[20]);
+            $("#contactno1").val(c[21]);
+            $("#contactno2").val(c[22]);
+
+            await getTransactionData();
+        }
+    }
+
+    const getTransactionData = async () => {
+        let aid, body, data, atype;
+        aid = $("#aid").val();
+        atype = $("#atype").val();
+        body = { "aid": aid };
+        data = await postData(transactionSearch, body);
+        data = data.results;
+        console.log(data);
+
+        var container = $('#tableBody');
+        //container.empty();
+        if(atype=="01"){
+            if (data.length == 0) {
+            var transactionTable = $('#transactionTable');
+            transactionTable.empty();
+            data = `<div class="py-2" style="font-weight: bold; margin-left: 0.5%">
+            No transaction records found
+        </div>`;
+
+            transactionTable.append(data)
+            $("#transaction-information").show();
+            return;
+        }
+
+            var containerData = data.map(function (item, i) {
+                let tt, sign="";
+                if (item[0] == "01") {
+                    tt = "Deposit";
+                    sign = "+";
+                } else if (item[0] == "02") {
+                    tt = "Withdrawn";
+                    sign = "-";
+                } else if (item[0] == "03") {
+                    tt = "Transfer";
+                    sign = ">";
+                }
+    
+                row = `<tr>
+                <th scope='row'>${parseInt(i) + 1}</th>
+                <td>${tt}</td>
+                <td>${item[1]}</td>
+                <td class="text-end"><b>${sign}</b>${item[2]} ₹</td>
+                <td style="padding-left: 2%">${item[3]}</td>
+                <td>${item[4]}</td>
+            </tr>`;
+                var $row = $(row);
+    
+                return $row;
+    
+            });
+            container.empty();
+            container.append(containerData);
+            $("#transaction-information").show();
+            console.log(data, data.length)
+            dataTable(data);
+        } else if(atype=="02" || atype=="03" || atype=="04"){
+            $("#transaction-information").hide();
+        }
+    }
+
+</script>
+{% endblock content %}

@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block title %}Bank Details{% endblock title %}
+{% block navigation %}
+<div>
+	<i class="fa fa-house"></i>
+	<a href="{{route.home}}"> Home </a>
+</div>
+<div>
+	<i class="fa fa-forward"></i>
+	Bank Details
+</div>
+{% endblock navigation %}
+{% block content %}
+<div id="bank-details">
+	<div id="bank-details-header" class="page-header text-center">
+		<h1>Bank Details</h1>
+	</div>
+	<div id="bank-details-content">
+		<div id="bank-info">
+			<div class="section">
+				<div class="section-title">Bank Details</div>
+				<div class="section-components-2">
+					<div class="component">
+						<div class="label">
+							<label for="bank-id">Bank ID</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="bank-id" name="bank-id" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="bank-name">Bank Name</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="bank-name" name="bank-name" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="bank-addr">Bank Address</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="bank-addr" name="bank-addr" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="bank-balance">Balance</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="bank-balance" name="bank-balance" readonly />
+						</div>
+					</div>
+					<div class="component">
+						<div class="label">
+							<label for="bank-lasttrandt">Last Transaction (Date-Time)</label>
+						</div>
+						<div class="input-field">
+							<input class="form-control" type="text" id="bank-lasttrandt" name="bank-lasttrandt"
+								readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="transaction-info">
+			<div class="section">
+				<div class="section-title">Transaction Details</div>
+				<div class="section-components-2">
+					<div class="table-responsive">
+                        <table class="table table-stripped table-hover dataTable" style="margin-bottom:0px">
+                            <thead>
+                                <tr>
+                                    <th class="text-start" style="width:3%">#</th>
+                                    <th class="text-start">Account No.</th>
+                                    <th class="text-start">Customer ID</th>
+                                    <th class="text-start">Customer Name</th>
+                                    <th class="text-start">Account Type</th>
+                                    <th class="text-start">Transaction Type</th>
+                                    <th class="text-start">Account No. 2</th>
+                                    <th class="text-start">Amount</th>
+                                    <th class="text-start" style="width:15%">Description</th>
+                                    <th class="text-start">Transaction (Date-Time)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+				</div>
+			</div>
+		</div>		  
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready( async function () {
+		const bank = {{ bankDetails | tojson | safe}};
+		$("#bank-id").val(bank[0]);
+		$("#bank-name").val(bank[1]);
+		$("#bank-addr").val(bank[2]);
+		$("#bank-balance").val(bank[3]+" ₹");
+		$("#bank-lasttrandt").val(bank[4]);
+		const transactions = {{ transactionsDetails | tojson | safe}};
+		console.log(bank);
+		console.log(transactions);
+
+		cids = transactions.map(i => i[2]);
+        console.log("CIDs: " + cids);
+		
+		body = { fields: "fullname", value: cids }
+        let cidsData = await postData(customerSearch, body);
+        cidsData = cidsData.results
+        console.log(cidsData);
+
+		var container = $('#tableBody');
+        var containerData = transactions.map(function (item, i) {
+            if (item[3] == "01") {
+                atype = "Saving"
+            } else if (item[3] == "02") {
+                atype = "Loan"
+            } else if (item[3] == "03") {
+                atype = "FD"
+            } else if (item[3] == "04") {
+                atype = "RD"
+            }
+
+			let tt, sign;
+            if (item[4] == "01") {
+                tt = "Deposit";
+                sign = "+";
+            } else if (item[4] == "02") {
+                tt = "Withdrawn";
+                sign = "-";
+            } else if (item[4] == "03") {
+                tt = "Transfer";
+                sign = ">";
+            }
+
+            data = `<tr>
+						<th scope='row'>${i + 1}</th>
+                        <td>${item[1]}</td>
+                        <td>${item[2]}</td>
+                        <td>${fullname(cidsData[i][0], cidsData[i][1], cidsData[i][2])}</td>
+                        <td>${atype}</td>
+						<td>${tt}</td>
+						<td>${item[5]}</td>
+            			<td class="text-end"><b>${sign}</b>${item[6]} ₹</td>
+                        <td>${item[7]}</td>
+                        <td>${item[8]}</td>
+                    </tr>`;
+            var $data = $(data);
+            return $data;
+
+        });
+        container.empty();
+        container.append(containerData);
+        dataTable(transactions);
+	});
+
+</script>
+
+{% endblock content %}

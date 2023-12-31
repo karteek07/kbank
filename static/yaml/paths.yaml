@@ -1,0 +1,39 @@
+files:
+    app             :   "./app.py"
+    db              :   "./database.db"
+    log             :   "./app.log"
+    base            :   "./base.html"
+    login           :   "./login.html"
+    home            :   "./home.html"
+    transaction     :   "./transaction/transaction.html"
+    bankInfo        :   "./bank-info/bank-info.html"
+    macro           :   "./macro.html"
+    customer        :
+        create      :   "./customer/customer-create.html"
+        search      :   "./customer/customer-search.html"
+        info        :   "./customer/customer-info.html"
+    account         :
+        create      :   "./account/account-create.html"
+        search      :   "./account/account-search.html"
+        info        :   "./account/account-info.html"
+routes:
+    base            :   "/base"
+    login           :   "/login"
+    logout          :   "/logout"
+    home            :   "/"
+    bankInfo        :   "/bank-info"
+    macro           :   "/macro"
+    customer        :
+        create      :   "/customer/create"
+        search      :   "/customer/search"
+        info        :   "/customer/info"
+        shortInfo   :   "/customer/short-info"
+    account         :
+        create      :   "/account/create"
+        search      :   "/account/search"
+        info        :   "/account/info"
+    transaction     :
+        transaction :   "/transaction"
+        search      :   "/transaction/search"
+
+    
