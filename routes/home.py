@@ -1,5 +1,6 @@
 from flask import render_template, Blueprint, session, redirect, url_for, jsonify, request, render_template_string
 from static.python.paths import files as file, routes as route
+import requests, uuid, json
 
 import sqlite3
 
@@ -54,3 +55,44 @@ def render_macro():
 @home.route("/temp")
 def temp():
     return render_template("temp.html")
+
+
+
+
+############################# Customer Short Info #############################
+@home.route('/translate', methods=['GET', 'POST'])
+def translate():
+    data = request.json['data']
+    # data = request.args.get('data')
+    print(data)
+    key = "dc91f0fe80224b99b4a602afe488255d"
+    endpoint = "https://api.cognitive.microsofttranslator.com"
+    location = "centralindia"
+
+    path = '/translate'
+    constructed_url = endpoint + path
+
+    params = {
+        'api-version': '3.0',
+        'from': 'en',
+        'to': 'hi'
+    }
+
+    headers = {
+        'Ocp-Apim-Subscription-Key': key,
+        'Ocp-Apim-Subscription-Region': location,
+        'Content-type': 'application/json',
+        'X-ClientTraceId': str(uuid.uuid4())
+    }
+
+    body = [{
+        'text': data
+    }]
+
+    req = requests.post(constructed_url, params=params, headers=headers, json=body)
+    response = req.json()
+
+    # print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separators=(',', ': ')))
+    ttext = response[0]['translations'][0]['text']
+    print(ttext)
+    return jsonify(ttext)

@@ -60,8 +60,6 @@ def login():
             return render_template(file['login'])
 
 ############################# Logout #############################
-
-
 @auth.route(route['logout'])
 def logout():
     session.clear()

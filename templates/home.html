@@ -1,11 +1,7 @@
-{% extends "base.html" %}
-{% block title %} Home {% endblock title %}
-{% block navigation %}
-<div>
-    <i class="fa fa-house"></i> Home
-</div>
-{% endblock navigation %}
-{% block content %}
+{% extends "base.html" %} {% block title %} Home {% endblock title %} {% block
+navigation %}
+<div><i class="fa fa-house"></i> Home</div>
+{% endblock navigation %} {% block content %}
 <div id="home">
     <div id="home-header" class="page-header text-center">
         <h1>Home</h1>
@@ -16,10 +12,8 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
-                            <a href={{route.customer.create}}>
-                                <div>
-                                    Create New Customer
-                                </div>
+                            <a href="{{route.customer.create}}">
+                                <div class='text'>Create New Customer</div>
                             </a>
                         </div>
                     </div>
@@ -27,34 +21,8 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
-                            <a href={{route.account.create}}>
-                                <div>
-                                    Create New Account
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center text-center my-5">
-                <div class="col-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <a href={{route.customer.search}}>
-                                <div>
-                                    Customer Search
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <a href={{route.account.search}}>
-                                <div>
-                                    Account Search
-                                </div>
+                            <a href="{{route.account.create}}">
+                                <div class='text'>Create New Account</div>
                             </a>
                         </div>
                     </div>
@@ -64,10 +32,8 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
-                            <a href={{route.transaction.transaction}}>
-                                <div>
-                                    Transactions
-                                </div>
+                            <a href="{{route.customer.search}}">
+                                <div class='text'>Customer Search</div>
                             </a>
                         </div>
                     </div>
@@ -75,10 +41,28 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
-                            <a href={{route.bankInfo}}>
-                                <div>
-                                    Bank Details
-                                </div>
+                            <a href="{{route.account.search}}">
+                                <div class='text'>Account Search</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center text-center my-5">
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{{route.transaction.transaction}}">
+                                <div class='text'>Transactions</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{{route.bankInfo}}">
+                                <div class='text'>Bank Details</div>
                             </a>
                         </div>
                     </div>
@@ -87,4 +71,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(async function () { 
+/*
+        let data = await translateText("Hii");
+        console.log(data);
+        */
+        
+    });
+</script>
 {% endblock content %}

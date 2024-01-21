@@ -87,9 +87,8 @@ def customerCreate():
     else:
         return redirect(url_for('auth.login'))
 
+
 ############################# Customer Search #############################
-
-
 @customer.route(route['customer']['search'], methods=['GET', 'POST'])
 def customerSearch():
     if "bid" in session:
