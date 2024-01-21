@@ -63,8 +63,6 @@ def temp():
 @home.route('/translate', methods=['GET', 'POST'])
 def translate():
     data = request.json['data']
-    # data = request.args.get('data')
-    print(data)
     key = "dc91f0fe80224b99b4a602afe488255d"
     endpoint = "https://api.cognitive.microsofttranslator.com"
     location = "centralindia"
@@ -91,8 +89,6 @@ def translate():
 
     req = requests.post(constructed_url, params=params, headers=headers, json=body)
     response = req.json()
-
-    # print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separators=(',', ': ')))
+    
     ttext = response[0]['translations'][0]['text']
-    print(ttext)
     return jsonify(ttext)

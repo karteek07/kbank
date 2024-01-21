@@ -179,19 +179,21 @@ $("#translateBtn").click(async ()=>{
         texts.push(element.textContent);
     })
     text = [...texts].join(', ')
-    console.log(text)
     
     tdata = await translateText(text);
-    console.log(tdata);
     ttext = tdata.split(', ')
-    console.log(rawTextArray)
-    console.log(ttext);
-
+    
     rawTextArray.forEach(function(element, index) {
         if (ttext[index]) {
             element.textContent = ttext[index];
         }
     });
+
+    // console.log(text)
+    // console.log(tdata);
+    // console.log(rawTextArray)
+    // console.log(ttext);
+
 
 
 });
