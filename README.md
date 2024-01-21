@@ -34,10 +34,9 @@
 3. HTML, CSS, JavaScript
 4. VSCode
 5. Azure Subscription
-6. Azure Translate
+6. Azure Translate AI
 7. Git
-8. Github
-9. Postman
+8. Postman
 
 
 ## 🎈 Usage <a name="usage"></a>
@@ -49,12 +48,13 @@
 Create virtual environment
 > $ virtualenv .venv
 
-
 Activate virtual environment
 > $ source .venv/bin/activate
 
+Installing requirements
 > $ pip install -r requirements.txt
 
+Running the server
 > $ python app.py
 
 
@@ -64,11 +64,11 @@ Activate virtual environment
 - SQLite
 
 ## 💡 Services Used <a name = "services"></a>
-- Azure Core Service
+- Azure Core Service:
   - Virtual Machine
   - Virtual Network
-- Azure AI Service
-  - Translator: Eng to Hi
+- Azure AI Service:
+  - Azure Translate AI: Eng to Hi
 
 
 ## ⛓️ Links<a name = "links"></a>
