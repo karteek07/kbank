@@ -19,7 +19,7 @@
 ## 📝 Table of Contents
 
 - [📝 Table of Contents](#-table-of-contents)
-- [Prerequisites](#prerequisites)
+- [🏁 Prerequisites ](#-prerequisites-)
 - [🎈 Usage ](#-usage-)
 - [⛏️ Built With ](#️-built-with-)
 - [⛓️ Links](#️-links)
@@ -29,7 +29,8 @@
 
 
 
-## Prerequisites
+## 🏁 Prerequisites <a name="prerequisites"></a>
+
 1. Python
 2. Virtualenv
 3. HTML, CSS, JavaScript
@@ -38,8 +39,13 @@
 ## 🎈 Usage <a name="usage"></a>
 
 > $ git clone https://github.com/karteek07/kbank.git
+
 > $ cd kbank
+
+> Activate virtualenv
+
 > $ pip install -r requirements.txt
+
 > python app.py
 
 
@@ -50,5 +56,5 @@
 
 
 ## ⛓️ Links<a name = "links"></a>
-- [Active Link: ](http://kbank.centralindia.cloudapp.azure.com:8080/)
-- [Youtube Link: ](https://youtu.be/ixzrh-d94Fg)
+- [K-Bank](http://kbank.centralindia.cloudapp.azure.com:8080/)
+- [Youtube](https://youtu.be/ixzrh-d94Fg)
