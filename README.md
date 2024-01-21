@@ -2,7 +2,7 @@
   <a href="" rel="noopener">
  <img src="https://github.com/karteek07/kbank/blob/main/imgs/kbank.png?raw=true" alt="Project logo"></a>
 </p>
-<h3 align="center">K-Bank</h3>
+<h2 align="center">K-Bank</h2>
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> ### K-Bank, a Bank which is always Yours!
     <br> 
 </p>
 
