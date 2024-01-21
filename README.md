@@ -1,8 +1,8 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
+ <img src="https://github.com/karteek07/kbank/imgs/kbank.png" alt="Project logo"></a>
 </p>
-<h3 align="center">Project Title</h3>
+<h3 align="center">K-Bank</h3>
 
 <div align="center">
 
