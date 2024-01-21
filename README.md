@@ -46,11 +46,11 @@
 
 > $ cd kbank
 
-> Create virtual environment
+Create virtual environment
 > $ virtualenv .venv
 
 
-> Activate virtual environment
+Activate virtual environment
 > $ source .venv/bin/activate
 
 > $ pip install -r requirements.txt
@@ -73,6 +73,6 @@
 
 ## ⛓️ Links<a name = "links"></a>
 - [K-Bank](http://kbank.centralindia.cloudapp.azure.com:8080/)
-  - BankerId: 101
+  - Banker ID: 101
   - password: pass@123
 - [Youtube](https://youtu.be/ixzrh-d94Fg)
