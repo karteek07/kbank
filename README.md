@@ -41,8 +41,10 @@
 
 ## 🎈 Usage <a name="usage"></a>
 
+Clone the repository
 > $ git clone https://github.com/karteek07/kbank.git
 
+Navigate to the repository
 > $ cd kbank
 
 Create virtual environment
