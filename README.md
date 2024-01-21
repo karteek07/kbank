@@ -22,10 +22,8 @@
 - [🏁 Prerequisites ](#-prerequisites-)
 - [🎈 Usage ](#-usage-)
 - [⛏️ Built With ](#️-built-with-)
+- [💡 Services Used ](#-services-used-)
 - [⛓️ Links](#️-links)
-
-
-
 
 
 
@@ -34,6 +32,12 @@
 1. Python
 2. Virtualenv
 3. HTML, CSS, JavaScript
+4. VSCode
+5. Azure Subscription
+6. Azure Translate
+7. Git
+8. Github
+9. Postman
 
 
 ## 🎈 Usage <a name="usage"></a>
@@ -42,11 +46,16 @@
 
 > $ cd kbank
 
-> Activate virtualenv
+> Create virtual environment
+> $ virtualenv .venv
+
+
+> Activate virtual environment
+> $ source .venv/bin/activate
 
 > $ pip install -r requirements.txt
 
-> python app.py
+> $ python app.py
 
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
@@ -54,7 +63,16 @@
 - Flask
 - SQLite
 
+## 💡 Services Used <a name = "services"></a>
+- Azure Core Service
+  - Virtual Machine
+  - Virtual Network
+- Azure AI Service
+  - Translator: Eng to Hi
+
 
 ## ⛓️ Links<a name = "links"></a>
 - [K-Bank](http://kbank.centralindia.cloudapp.azure.com:8080/)
+  - BankerId: 101
+  - password: pass@123
 - [Youtube](https://youtu.be/ixzrh-d94Fg)
