@@ -67,8 +67,9 @@ Running the server
 
 ## 💡 Services Used <a name = "services"></a>
 - Azure Core Service:
-  - Virtual Machine
-  - Virtual Network
+  - Azure Virtual Machine
+  - Azure Virtual Network
+  - Azure DNS
 - Azure AI Service:
   - Azure Translate AI: Eng to Hi
 
