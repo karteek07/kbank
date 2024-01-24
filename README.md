@@ -26,6 +26,13 @@
 - [⛓️ Links](#️-links)
 
 
+## 🏁 About <a name="about"></a>
+- K-Bank is a banking application, which helps a banker to make their customer oriented tasks complete such as - deposit, withdraw, customer creation, account creation.
+- K-Bank is a small finance bank, which helps people in saving and investing their money.
+- K-Bank provides their customers four types of accounts - Savings, Loans, Fixed Deposits (FD), Recurring Deposits (RD)
+
+
+
 
 ## 🏁 Prerequisites <a name="prerequisites"></a>
 
