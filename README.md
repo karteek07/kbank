@@ -83,7 +83,7 @@ Running the server
 
 
 ## ⛓️ Links<a name = "links"></a>
-- [K-Bank](http://kbank.centralindia.cloudapp.azure.com:8080/)
+- [K-Bank](http://kbank.onrender.com/)
   - Banker ID: 101
   - password: pass@123
 - [Youtube](https://youtu.be/ixzrh-d94Fg)
